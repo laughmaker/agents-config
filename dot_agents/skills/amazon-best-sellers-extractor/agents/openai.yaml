@@ -1,0 +1,4 @@
+interface:
+  display_name: "Amazon Best Sellers Extractor"
+  short_description: "Extract top lists and audit brands"
+  default_prompt: "Use $amazon-best-sellers-extractor to extract an Amazon Best Sellers category into Excel, resolve exact brands from product detail pages, audit existing brand values for mismatches, add URLs, and chart brand counts."

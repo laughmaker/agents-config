@@ -1,0 +1,4 @@
+interface:
+  display_name: "Codex Hygiene"
+  short_description: "Audit Codex context and tool surfaces"
+  default_prompt: "Use $codex-hygiene to measure Codex Desktop context/tool surfaces, identify broad MCP/app/plugin availability, and propose a safe hygiene sequence."

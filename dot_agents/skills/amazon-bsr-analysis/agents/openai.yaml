@@ -1,0 +1,4 @@
+interface:
+  display_name: "Amazon BSR Analysis"
+  short_description: "Analyze Amazon Best Sellers category workbooks"
+  default_prompt: "Use $amazon-bsr-analysis to clean an Amazon BSR workbook, build analysis sheets, and produce a one-page category summary."

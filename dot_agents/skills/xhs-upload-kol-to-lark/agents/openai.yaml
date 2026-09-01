@@ -1,0 +1,7 @@
+interface:
+  display_name: "XHS Upload KOL To Lark"
+  short_description: "Update KOL fields in Feishu Base."
+  default_prompt: "Use $xhs-upload-kol-to-lark to update a Feishu Base KOL table from local Excel files, deduplicating by 达人昵称."
+
+policy:
+  allow_implicit_invocation: true

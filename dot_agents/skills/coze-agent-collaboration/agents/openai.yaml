@@ -1,0 +1,4 @@
+interface:
+  display_name: "Coze Agent Collaboration"
+  short_description: "Delegate work between Coze project agents via CLI"
+  default_prompt: "Use $coze-agent-collaboration to delegate a task to another Coze project agent."

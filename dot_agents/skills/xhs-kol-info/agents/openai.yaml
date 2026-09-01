@@ -1,0 +1,3 @@
+display_name: XHS KOL Info
+short_description: Export PGY KOL contacts to Excel.
+default_prompt: 读取小红书蒲公英感兴趣列表前 10 个博主的手机号和微信，并导出 Excel。

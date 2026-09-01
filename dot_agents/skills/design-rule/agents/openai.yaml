@@ -1,0 +1,4 @@
+interface:
+  display_name: "Design Rule"
+  short_description: "Practical point-line-shape-form design review"
+  default_prompt: "Use $design-rule to review and improve this PPT, webpage, or graphic design."

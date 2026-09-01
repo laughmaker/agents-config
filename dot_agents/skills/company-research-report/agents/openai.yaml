@@ -1,0 +1,4 @@
+interface:
+  display_name: "企业调研报告生成器"
+  short_description: "根据公开信息自动搜索并生成结构化企业调研报告，涵盖基本信息、产品、技术、融资、市场、营销、竞争、团队及AI融合分析"
+  default_prompt: "请为 [公司名称] 做一份企业调研报告"

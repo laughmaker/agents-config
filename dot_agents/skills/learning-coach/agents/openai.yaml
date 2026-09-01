@@ -1,0 +1,4 @@
+interface:
+  display_name: "Learning Coach"
+  short_description: "Build structured learning plans with testing and feedback"
+  default_prompt: "Use $learning-coach to help me learn a new topic through a structured plan, active testing, and review."
