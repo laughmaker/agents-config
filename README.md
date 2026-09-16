@@ -47,6 +47,22 @@ vim ~/.agents/skills/<skill-name>/SKILL.md
 chezmoi re-add ~/.agents
 ```
 
+注意：`re-add` 只更新**已被管理**的文件，不会自动纳入新增的 skill 目录或文件。
+新装或新建 skill 后必须显式添加，否则不会同步到其他 Mac：
+
+```bash
+chezmoi add ~/.agents/skills/<new-skill>
+```
+
+检查是否有遗漏（`chezmoi status` 不会提示未纳管的新文件）：
+
+```bash
+comm -13 <(chezmoi managed --include=files --path-style=absolute ~/.agents | sort) \
+         <(find ~/.agents -type f ! -name ".DS_Store" | sort)
+```
+
+输出应为空；唯一预期项是 `~/.agents/backups/`（本地备份，按设计不纳入管理）。
+
 ### 4. 提交并推送
 
 ```bash
