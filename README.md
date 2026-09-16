@@ -93,8 +93,9 @@ git commit + git push
 
 ## 注意事项
 
-- 修改前先执行 `chezmoi update`，减少多台电脑之间的 Git 冲突。
+- 修改前先执行 `chezmoi update` 拉取其他电脑的变更，减少 Git 冲突；但**若 `~/.agents` 已有尚未收回的改动，必须先 `chezmoi re-add`**，否则 `update` 会用源目录的旧版本覆盖本地修改。
 - `~/.agents` 中不要保存 API Key、Token、会话记录、缓存或其他敏感数据。
+- 各 skill 目录下的 `.last-update-check`（skill 更新检查缓存）与 `.DS_Store` 已由 `.chezmoiignore` 排除，不纳入同步。
 - `~/.agents/AGENTS.md` 是公共规则的唯一来源，不要分别维护各 Agent 的副本。
 - 新增 Agent 时，将它的规则文件链接到公共文件，然后用 `chezmoi add` 纳入管理：
 
