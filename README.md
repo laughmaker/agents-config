@@ -108,3 +108,7 @@ chezmoi add ~/.new-agent/AGENTS.md
 ## 2026-10-02 Skills 维护
 
 移除 `pm-skills`、`using-coze-cli`；通过 `.chezmoiremove` 同步删除其共享目录与 Codex 的旧链接。修正搜索路由、交接路径、Excel 澄清门槛、背景清理的依赖与像素保护，以及 Berkshire 仓库定位和缺失依赖处理。未安装缺失 CLI；未运行外部业务操作或上游版本升级。
+
+## 2026-10-02 Berkshire 技能本地化
+
+18 个 Berkshire 技能迁至 Survey 项目的 `.agents/skills/`；不再作为全局技能同步。`.chezmoiremove` 清理旧共享目录和 Codex 链接。Survey 本地技能由项目目录自身同步，不纳入本仓库。
