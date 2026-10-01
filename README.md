@@ -112,3 +112,7 @@ chezmoi add ~/.new-agent/AGENTS.md
 ## 2026-10-02 Berkshire 技能本地化
 
 18 个 Berkshire 技能迁至 Survey 项目的 `.agents/skills/`；不再作为全局技能同步。`.chezmoiremove` 清理旧共享目录和 Codex 链接。Survey 本地技能由项目目录自身同步，不纳入本仓库。
+
+## 2026-10-02 Lark 技能停用
+
+27 个 `lark-*` 技能及 `xhs-upload-kol-to-lark` 移至 `~/.agents/skills_disabled/`，保留内容并移除全局激活链接；chezmoi 同步停用目录，通过 `.chezmoiremove` 清理旧路径。已有停用技能保持不变。
