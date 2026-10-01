@@ -66,3 +66,13 @@
 .agents/skills/lark-workflow-standup-report
 .agents/skills/xhs-upload-kol-to-lark
 .codex/skills/xhs-upload-kol-to-lark
+.agents/skills/investment-memo-craft
+.agents/skills/xhs-kol-info
+.agents/skills/xhs-pet-research-publish
+.agents/skills/xiaohongshu-cli
+.agents/skills/xiaohongshu-market-research
+.codex/skills/investment-memo-craft
+.codex/skills/xiaohongshu-cli
+.claude/skills/xiaohongshu-cli
+.workbuddy/skills/xiaohongshu-cli
+.qwenworkcn/skills/xiaohongshu-cli

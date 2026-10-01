@@ -116,3 +116,7 @@ chezmoi add ~/.new-agent/AGENTS.md
 ## 2026-10-02 Lark 技能停用
 
 27 个 `lark-*` 技能及 `xhs-upload-kol-to-lark` 移至 `~/.agents/skills_disabled/`，保留内容并移除全局激活链接；chezmoi 同步停用目录，通过 `.chezmoiremove` 清理旧路径。已有停用技能保持不变。
+
+## 2026-10-02 补充技能归属与 XHS 停用
+
+`investment-memo-craft` 补移至 Survey 项目 `.agents/skills/`（Berkshire 本地技能共 19 个）。四个 XHS 技能 `xhs-kol-info`、`xhs-pet-research-publish`、`xiaohongshu-cli`、`xiaohongshu-market-research` 移至 `~/.agents/skills_disabled/`；已停用的 XHS/Lark 技能保持原位。chezmoi 同步停用目录与旧路径移除，本轮不纳入无关 Huashu Excel 本地修改。
