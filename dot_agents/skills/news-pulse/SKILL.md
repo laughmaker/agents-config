@@ -9,7 +9,9 @@ This skill is generated from `skills/news-pulse.md` so Claude Code and Codex use
 
 - Treat `$ARGUMENTS` as the user's request in the current Codex thread.
 - When the source mentions Claude-only surfaces such as Task, Agent, WebSearch, Bash, Read, or Write, use the closest Codex capability available in this session: subagents when available, web search when needed, shell commands for local tools, and normal file edits for workspace files.
-- Use shared project tools from `tools/` in this repository. Commands that reference `~/ai-berkshire/tools/...` assume the repo is checked out at `~/ai-berkshire`; if needed, prefer the current workspace path.
+- Resolve the Berkshire repository before using its tools: check a user-provided path or `BERKSHIRE_ROOT`, then the current workspace and its parents, then `~/ai-berkshire`. Accept a directory only after confirming the requested `tools/<script>` exists. Do not scan unrelated directories or assume the skill folder is the repository. Set `BERKSHIRE_ROOT` to the verified absolute directory; commands below use that value. Never run them with an empty or unverified value.
+- If repository tools are absent, retain the evidence and calculation requirements using available local Python/Decimal or a spreadsheet. Inspect a found script's documented interface before invoking it. Do not invent command flags, clone/install tools without task authorization, or claim the named tool passed when it did not run. Report missing specialized validation separately.
+- For canonical `skills/<name>.md` references, use the verified repository file if present; otherwise locate the installed sibling `<name>/SKILL.md`. If neither exists, state the gap. Store temporary outputs under `~/tmp/`.
 - Preserve the research quality rules from `AGENTS.md`: cross-check financial data, use exact arithmetic tools for valuation/math, and clearly label uncertainty and source gaps.
 
 # 公司新闻脉搏：股价异动快速归因团队
@@ -105,9 +107,9 @@ This skill is generated from `skills/news-pulse.md` so Claude Code and Codex use
   1. **卖方评级变动**：高盛、摩根、中金等最近的评级/目标价调整
   2. **机构持仓变化**：13F 披露（美股）、港股通持仓、北上资金流向
   3. **做空数据**：做空比例、新发布的做空报告（如有）
-  4. **大 V 观点**：可调用 `python3 ~/ai-berkshire/tools/xueqiu_scraper.py` 抓段永平等大 V 最近相关发言
+  4. **大 V 观点**：可调用 `python3 "${BERKSHIRE_ROOT}/tools/xueqiu_scraper.py"` 抓段永平等大 V 最近相关发言
      - 段永平 user_id: `1247347556`
-     - 命令示例：`python3 ~/ai-berkshire/tools/xueqiu_scraper.py --user-id 1247347556 --keywords {公司名},{股票代码} --output /tmp/dyp-{公司名}.md`
+     - 命令示例：`python3 "${BERKSHIRE_ROOT}/tools/xueqiu_scraper.py" --user-id 1247347556 --keywords {公司名},{股票代码} --output ~/tmp/dyp-{公司名}.md`
      - 仅在该公司是段永平/李录关注标的时调用，否则跳过节省时间
   5. **传言与小作文**：媒体未证实的传言、社交媒体讨论热点（雪球/X/Reddit）
   6. **技术面信号**：是否触及关键支撑/阻力、是否有大宗交易、融资融券异常

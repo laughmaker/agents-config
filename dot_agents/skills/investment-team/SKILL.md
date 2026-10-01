@@ -9,7 +9,9 @@ This skill is generated from `skills/investment-team.md` so Claude Code and Code
 
 - Treat `$ARGUMENTS` as the user's request in the current Codex thread.
 - When the source mentions Claude-only surfaces such as Task, Agent, WebSearch, Bash, Read, or Write, use the closest Codex capability available in this session: subagents when available, web search when needed, shell commands for local tools, and normal file edits for workspace files.
-- Use shared project tools from `tools/` in this repository. Commands that reference `~/ai-berkshire/tools/...` assume the repo is checked out at `~/ai-berkshire`; if needed, prefer the current workspace path.
+- Resolve the Berkshire repository before using its tools: check a user-provided path or `BERKSHIRE_ROOT`, then the current workspace and its parents, then `~/ai-berkshire`. Accept a directory only after confirming the requested `tools/<script>` exists. Do not scan unrelated directories or assume the skill folder is the repository. Set `BERKSHIRE_ROOT` to the verified absolute directory; commands below use that value. Never run them with an empty or unverified value.
+- If repository tools are absent, retain the evidence and calculation requirements using available local Python/Decimal or a spreadsheet. Inspect a found script's documented interface before invoking it. Do not invent command flags, clone/install tools without task authorization, or claim the named tool passed when it did not run. Report missing specialized validation separately.
+- For canonical `skills/<name>.md` references, use the verified repository file if present; otherwise locate the installed sibling `<name>/SKILL.md`. If neither exists, state the gap. Store temporary outputs under `~/tmp/`.
 - Preserve the research quality rules from `AGENTS.md`: cross-check financial data, use exact arithmetic tools for valuation/math, and clearly label uncertainty and source gaps.
 
 # 投研团队：四角色并行分析框架
@@ -76,10 +78,10 @@ This skill is generated from `skills/investment-team.md` so Claude Code and Code
   5. 估值分析：PE/PS/PB/EV等，与历史及同业对比
   6. 安全边际评估：内在价值 vs 当前股价
   7. **金融严谨性验证（必须使用Bash调用工具，禁止心算）**：
-     - 市值验算：`python3 ~/ai-berkshire/tools/financial_rigor.py verify-market-cap --price {价格} --shares {股本} --reported {报告市值} --currency {币种}`
-     - 估值验算：`python3 ~/ai-berkshire/tools/financial_rigor.py verify-valuation --price {价格} --eps {EPS} --bvps {每股净资产}`
-     - 关键数据交叉验证：`python3 ~/ai-berkshire/tools/financial_rigor.py cross-validate --field {字段} --values '{JSON}' --unit {单位}`
-     - 三情景估值：`python3 ~/ai-berkshire/tools/financial_rigor.py three-scenario --price {价格} --eps {EPS} --shares {股本亿} --growth {乐观} {中性} {悲观} --pe {乐观PE} {中性PE} {悲观PE}`
+     - 市值验算：`python3 "${BERKSHIRE_ROOT}/tools/financial_rigor.py" verify-market-cap --price {价格} --shares {股本} --reported {报告市值} --currency {币种}`
+     - 估值验算：`python3 "${BERKSHIRE_ROOT}/tools/financial_rigor.py" verify-valuation --price {价格} --eps {EPS} --bvps {每股净资产}`
+     - 关键数据交叉验证：`python3 "${BERKSHIRE_ROOT}/tools/financial_rigor.py" cross-validate --field {字段} --values '{JSON}' --unit {单位}`
+     - 三情景估值：`python3 "${BERKSHIRE_ROOT}/tools/financial_rigor.py" three-scenario --price {价格} --eps {EPS} --shares {股本亿} --growth {乐观} {中性} {悲观} --pe {乐观PE} {中性PE} {悲观PE}`
      - 将工具输出结果直接嵌入报告中作为验证记录
 
 #### 任务3：行业与竞争分析
@@ -198,13 +200,13 @@ This skill is generated from `skills/investment-team.md` so Claude Code and Code
 
 ```bash
 # Step 1 — 提取抽检清单（15%随机抽样）
-python3 ~/ai-berkshire/tools/report_audit.py extract \
+python3 "${BERKSHIRE_ROOT}/tools/report_audit.py" extract \
   --report <报告文件路径>
 
 # Step 2 — 对清单每项从可靠信源取数（参见 skills/financial-data.md）
 
 # Step 3 — 输出准出/打回判决
-python3 ~/ai-berkshire/tools/report_audit.py verdict \
+python3 "${BERKSHIRE_ROOT}/tools/report_audit.py" verdict \
   --results '<填好的JSON>' \
   --report <报告文件名>
 ```

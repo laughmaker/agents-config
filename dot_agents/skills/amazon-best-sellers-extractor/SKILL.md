@@ -7,7 +7,7 @@ description: Extract Amazon Best Sellers category pages into Excel, especially t
 ## Core Workflow
 Use this skill to turn an Amazon Best Sellers category into a verified Excel workbook. The common target is a top-100 list split across `pg=1` and `pg=2`, 50 products per page.
 
-Prefer the repository's web priority: Exa for simple public lookup, Dia when login or the user's loaded page matters, then in-app browser, then computer use. For Amazon pages that are already fully loaded in the user's browser, use the browser state the user provided instead of re-fetching from scratch.
+Follow the current project's search and browser rules. By default use Exa for public lookup and an existing Chrome session when login, interaction, or visual verification is needed; then in-app browser, then computer use. Honor an explicitly requested browser. For Amazon pages that are already fully loaded in the user's browser, use the browser state the user provided instead of re-fetching from scratch.
 
 ## Workbook Requirements
 Create or update an `.xlsx` in the user's requested folder, usually `amazon/`.

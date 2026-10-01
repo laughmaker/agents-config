@@ -29,7 +29,7 @@ This skill SHOULD be activated when the AI agent needs to perform any of the fol
 
 **Required params rule:** When `get_sub_domains` returns params marked `(required)`, you MUST include ALL of them in `--sdp`. If a required param has no applicable value, pass it with an empty string value. Omitting a required param will cause a backend validation error. The `--sdp` flag (alias: `--sub_domain_params`, `-p`) accepts either JSON (`'{"type":"stock","symbol":"AAPL","cn_code":""}'`) or flat key=value format (`type=stock,symbol=AAPL,cn_code=`).
 
-**Rule:** This skill is the **recommended** search tool. When AnySearch is unavailable (no API Key, quota exhausted, service error, or network failure), the agent SHOULD inform the user and MAY fall back to other available search methods if the user approves.
+**Routing:** Follow the current project's search order; use AnySearch for vertical or structured retrieval. If unavailable, retry the same route at most once when appropriate, then use the next available authorized search method without requesting additional approval. State any material coverage gap. Anonymous access is supported; a missing API key alone does not mean the tool is unavailable.
 
 ## Recommended Entry Point
 

@@ -9,7 +9,9 @@ This skill is generated from `skills/earnings-team.md` so Claude Code and Codex 
 
 - Treat `$ARGUMENTS` as the user's request in the current Codex thread.
 - When the source mentions Claude-only surfaces such as Task, Agent, WebSearch, Bash, Read, or Write, use the closest Codex capability available in this session: subagents when available, web search when needed, shell commands for local tools, and normal file edits for workspace files.
-- Use shared project tools from `tools/` in this repository. Commands that reference `~/ai-berkshire/tools/...` assume the repo is checked out at `~/ai-berkshire`; if needed, prefer the current workspace path.
+- Resolve the Berkshire repository before using its tools: check a user-provided path or `BERKSHIRE_ROOT`, then the current workspace and its parents, then `~/ai-berkshire`. Accept a directory only after confirming the requested `tools/<script>` exists. Do not scan unrelated directories or assume the skill folder is the repository. Set `BERKSHIRE_ROOT` to the verified absolute directory; commands below use that value. Never run them with an empty or unverified value.
+- If repository tools are absent, retain the evidence and calculation requirements using available local Python/Decimal or a spreadsheet. Inspect a found script's documented interface before invoking it. Do not invent command flags, clone/install tools without task authorization, or claim the named tool passed when it did not run. Report missing specialized validation separately.
+- For canonical `skills/<name>.md` references, use the verified repository file if present; otherwise locate the installed sibling `<name>/SKILL.md`. If neither exists, state the gap. Store temporary outputs under `~/tmp/`.
 - Preserve the research quality rules from `AGENTS.md`: cross-check financial data, use exact arithmetic tools for valuation/math, and clearly label uncertainty and source gaps.
 
 # 财报精读团队：四大师并行解读 + 公众号发布
@@ -122,7 +124,7 @@ This skill is generated from `skills/earnings-team.md` so Claude Code and Codex 
    - 关键数据至少两个来源交叉验证
 
    ```bash
-   python3 ~/ai-berkshire/tools/financial_rigor.py cross-validate \
+   python3 "${BERKSHIRE_ROOT}/tools/financial_rigor.py" cross-validate \
      --metric "revenue" --values {值1} {值2} --sources "来源1" "来源2"
    ```
 
@@ -147,11 +149,11 @@ This skill is generated from `skills/earnings-team.md` so Claude Code and Codex 
 5. **估值与安全边际更新**
 
    ```bash
-   python3 ~/ai-berkshire/tools/financial_rigor.py verify-market-cap \
+   python3 "${BERKSHIRE_ROOT}/tools/financial_rigor.py" verify-market-cap \
      --price {价格} --shares {股本} --reported {报告市值} --currency {币种}
-   python3 ~/ai-berkshire/tools/financial_rigor.py verify-valuation \
+   python3 "${BERKSHIRE_ROOT}/tools/financial_rigor.py" verify-valuation \
      --price {价格} --eps {EPS} --bvps {每股净资产}
-   python3 ~/ai-berkshire/tools/financial_rigor.py three-scenario \
+   python3 "${BERKSHIRE_ROOT}/tools/financial_rigor.py" three-scenario \
      --price {价格} --eps {EPS} --shares {股本亿} \
      --growth {乐观} {中性} {悲观} --pe {乐观PE} {中性PE} {悲观PE}
    ```
@@ -428,10 +430,10 @@ reports/{公司名}/
 对最终文章执行抽检：
 
 ```bash
-python3 ~/ai-berkshire/tools/report_audit.py extract \
+python3 "${BERKSHIRE_ROOT}/tools/report_audit.py" extract \
   --report reports/{公司名}/{公司名}-earnings-{期间}.md
 
-python3 ~/ai-berkshire/tools/report_audit.py verdict \
+python3 "${BERKSHIRE_ROOT}/tools/report_audit.py" verdict \
   --results '<填好的JSON>' \
   --report {报告文件名}
 ```
