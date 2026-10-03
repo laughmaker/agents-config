@@ -1,4 +1,4 @@
 interface:
-  display_name: "公司与产品研究"
-  short_description: "基于公开证据解释公司与产品的业务机制，支持快速理解、完整调研、竞品对标和局部更新"
+  display_name: "公司与商业研究"
+  short_description: "基于公开证据开展公司全景与商业模式分析，按需结合 Amazon、竞品定位和商业质量研究技能"
   default_prompt: "请使用 $company-research-report 调研 [公司、产品或网址]，先解释它解决什么问题、如何运转和收费，再按我的研究目的核验关键证据与限制。"

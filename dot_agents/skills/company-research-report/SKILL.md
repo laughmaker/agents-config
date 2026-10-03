@@ -1,9 +1,9 @@
 ---
 name: company-research-report
-description: Research a specific company, brand, product, or service using public evidence; explain how its business works and produce a concise assessment, full report, competitor benchmark, or update. Use for company research, product understanding, commercial due diligence, and business-model comparisons. Broad industry scans and securities valuation or portfolio decisions belong to their specialized workflows.
+description: Research a specific company, brand, product, or service using public evidence, combining a company overview with business-model analysis. Use for company and product research, commercial due diligence, competitor benchmarking, and updates; coordinate relevant Amazon, competitive-positioning, and business-quality skills when available. Broad industry scans and securities valuation or portfolio decisions belong to specialized workflows.
 ---
 
-# 公司与产品研究
+# 公司与商业研究
 
 围绕用户的问题组织证据，先讲清业务如何运转，再判断公开资料支持什么结论。使用 [报告模板](assets/report-template.md) 作为可裁剪的骨架，不强制写满章节。
 
