@@ -1,77 +1,75 @@
 ---
 name: company-research-report
-description: Generate structured corporate research reports by searching public information across web, e-commerce platforms, social media, and financial databases. Use when the user asks for a company research report, market analysis, due diligence summary, or competitive analysis of a specific company.
+description: Research a specific company, brand, product, or service using public evidence; explain how its business works and produce a concise assessment, full report, competitor benchmark, or update. Use for company research, product understanding, commercial due diligence, and business-model comparisons. Broad industry scans and securities valuation or portfolio decisions belong to their specialized workflows.
 ---
 
-# Company Research Report Generator
+# 公司与产品研究
 
-Generate structured, source-backed corporate research reports using the template at `assets/report-template.md`.
+围绕用户的问题组织证据，先讲清业务如何运转，再判断公开资料支持什么结论。使用 [报告模板](assets/report-template.md) 作为可裁剪的骨架，不强制写满章节。
 
-## Workflow
+## 1. 确定研究目的与范围
 
-### 1. Read the Template
+先检查相关已有资料和项目规则，识别品牌、产品、运营主体与注册实体之间的关系，确认市场、研究截止日和用户关心的决策。只有主体歧义或缺失信息实质改变方向时才询问。
 
-Load `assets/report-template.md` to understand the full structure. The template contains 13 chapters covering:
+按请求选择深度，不因调用本技能自动扩大范围：
 
-1. Basic info — 2. History — 3. Products — 4. Tech/IP — 5. Funding/Equity — 6. Market performance — 7. Marketing analysis — 8. Team — 9. Competition — 10. Strategy — 11. AI integration — 12. Risk — 13. Summary
+- **快速理解**：“这是什么、有什么用、怎么做”——直接回答业务机制、关键证据与限制；通常在聊天中交付，无需生成完整报告。
+- **完整研究**：用户需要公司调研、商业尽调或正式报告——按对象展开相关模块，并保存来源与口径。
+- **竞品/商业模式对标**：围绕用户的项目或假设比较，说明可借鉴的机制、成立条件和不能直接迁移的部分；无需为每个竞品重复完整报告。
+- **局部更新**：比较当前文件与新来源，只更新变化的事实、受影响的判断和来源记录，保留已确认的结构和设计。
 
-### 2. Research
+涉及 BP 评审时，将材料中的主张拆为可核查事实、假设和待验证事项；本技能承担公司与产品对标，不自动替代全部 BP 评审。行业扫描、证券估值和组合决策按用户请求使用对应专门技能；不强制加载所有研究技能。
 
-Search for the company across multiple channels. Prioritize:
+## 2. 先解释业务机制
 
-- **Official sources** - corporate website, official news, IR filings if public
-- **Business registries** - Qichacha (qcc.com), Tianyancha, Qixinbao for equity, registration, legal
-- **Funding/VC databases** - 36kr, Qimingpian for funding rounds, investors, valuations
-- **E-commerce** - JD.com, Tmall/Taobao for reviews, rankings, price points
-- **Social/Content** - Xiaohongshu, Bilibili, YouTube, Douyin for brand sentiment, content strategy
-- **Industry data** - AVC (奥维云网), Fortune Business Insights, industry association reports for market benchmarks
-- **Financial media** - 36kr, East Money, CBN for industry context
+用具体用户和典型流程回答：
 
-### 3. Data Quality Rules
+1. 谁在什么场景下遇到什么问题？现有替代方案是什么？
+2. 产品或服务如何解决？用户输入什么、经过哪些步骤、得到什么结果？
+3. 谁使用、谁付钱、如何收费？交付由谁完成？
+4. 核心价值、成本和限制在哪里？哪些效果有证据，哪些只是公司主张？
 
-- **Exact figures** (registered capital, shareholding %, founding date) need at least one authoritative source (business registry or verified news article).
-- **Sales/GMV estimates** must be explicitly labeled as estimates with methodology explained (e.g., review-count × assumed review-rate).
-- **Leadership quotes** need source attribution.
-- **Industry statistics** need source attribution (e.g., "AVC" / "Fortune Business Insights").
-- **Cross-reference**: Verify key data points across at least 2 independent sources when possible. Flag single-source data explicitly.
-- When exact data is unavailable from public channels, clearly state that limitation and offer the best available proxy.
+研究结论应服务用户目的，例如理解、采购、合作或产品借鉴；不要把功能介绍直接升级为商业成功判断。
 
-### 4. Fill the Template
+## 3. 按对象寻找证据
 
-Replace each `{{PLACEHOLDER}}` with researched content. Do NOT leave placeholders empty. If a section is genuinely not applicable, explain why briefly instead of deleting it.
+优先使用适合该问题的一手资料：产品与帮助文档、价格与条款、注册记录、公司披露、财报、监管记录。公司官网可以证明其公开主张，不能单独证明实际效果、市场份额或盈利能力。
 
-### 5. Equity Structure Penetration
+按当前可用工具与项目路由取证：通用搜索、平台原生内容和批量提取各用合适工具；不将某个工具或付费数据库作为完成任务的前提。登录、付费或访问受限时记录缺口，切换可核验渠道；同一路径按文档最多重试一次。搜索摘要只作线索，未读取原文的内容不冒充已核验来源。
 
-For Chapter 5, when equity data is available, do a deep penetration analysis:
+按对象选择指标和字段，不套用统一电商框架：
 
-- Trace upstream shareholders to identify ultimate controlling parties
-- Identify whether the company is part of a larger ecosystem (e.g., XbotPark, Tencent ecosystem, Xiaomi ecosystem)
-- Map co-investment relationships and syndicate patterns
-- Analyze founder control vs investor influence balance
-- Flag state-owned capital, SOE, or government-guided fund involvement
+| 对象 | 优先研究 |
+|---|---|
+| 消费硬件/品牌 | 使用场景、产品交付、渠道、成交价、售后、退货、设备与服务收入 |
+| SaaS/AI 软件 | 工作流、权限与集成、收费单位、交付成本、使用与付费、留存和平台依赖 |
+| 平台/社区/团购服务 | 供需参与者、订单与资金流、收费、履约责任、供应商筛选、纠纷处理 |
+| 上市公司 | 审计财报与最新披露、业务分部、现金流、股本及经营风险 |
 
-### 6. Marketing Analysis
+注册字段按司法辖区适配；品牌、开发者、注册公司不自动视为同一主体。应用上线时间不等于公司成立时间。
 
-For Chapter 7, analyze the full DTC funnel. Look for:
+## 4. 证据、口径与估算
 
-- Social media strategy (Xiaohongshu, Douyin, Instagram)
-- KOL/KOC matrix structure
-- Content themes and emotional positioning
-- Platform-specific viral mechanics
-- PR and media coverage patterns
-- Pricing strategy relative to competitors
-- Cross-border/international marketing signals
+- 关键判断区分 **事实 / 观点 / 推断 / 假设 / 待验证**；公司自述注明归属，不能写成独立验证的事实。
+- 关键数据保留来源 URL 或文件标识、发布日期（未载明则注明）、采集日期、指标定义、期间、单位和局限。财务数据注明币种、报告期、合并或母公司口径、是否审计；价格注明型号、地区、时点及促销/税费条件。
+- 在结论附近引用实际读取的来源；完整报告附来源索引。重要且有争议的主张尽量独立交叉核验；同一新闻稿的转载不算多个独立来源。权威原始记录无需为凑两个来源改用低质量资料。
+- 来源冲突先核对日期、产品型号、地区、统计对象和定义。不能消除时并列记录差异及其对结论的影响，不自行挑选有利数字。
+- 区分“未公开”“本次未找到”“无法访问”和“不适用”。公开数据不足时允许停止估算，将影响判断的缺口集中说明，不逐章重复。
+- 销量、GMV、收入、利润和 ARR 不互换；评价量、安装量、覆盖家庭数不是付费客户数。评价率及统计范围未经验证，不从评价量反推销量；未知渠道重叠和期间时，不直接相加为全渠道规模。
+- 估算须有可解释依据，注明区间或近似值、公式、假设和敏感性；证据无法支撑时不估算。情景测算明确标为假设，不能作为实际业绩或预测。订阅年化情景基于同一时点的付费用户与对应收入口径，不能直接以累计设备销量乘付费率代替活跃付费基数；不能把历史期间订阅收入年化后无条件称为披露 ARR。
 
-### 7. AI Integration Analysis
+## 5. 按需深入
 
-For Chapter 11, map the industry's AI maturity using an L1-L5 smart-device ladder framework. Analyze:
+- **融资与控制权**：有相关证据且影响用户判断时穿透股权；区分历史融资、当前持股、表决权与董事权利。投资人名单或生态关系不能证明控制权，也不能把历史估值作为当前估值。
+- **营销与经营质量**：按照实际获客、交易、交付、复购路径分析；DTC/KOL 分析仅适用于相关模式。数据允许时分析获客、渠道费用、物流、退货、售后、云端/AI 成本与现金流，不用售价减制造成本代替完整盈利能力。
+- **技术与 AI**：核查已交付功能、输入数据、输出、实际效果、成本与失败边界，区分现有能力、公司路线图和研究者推演。第三方模型使用、专利数量或长期数据积累不直接证明技术护城河。不默认使用 L1–L5；确有比较价值时先定义每一级，注明是本报告的分析框架，并给出分级证据。
+- **竞争与可迁移性**：包括直接竞品、替代方案和用户维持现状。对标分别说明可借鉴机制、支撑条件和目标项目缺少的条件，不从他人的销量或订阅成功推导目标项目的转化率。
+- **监管与可信度**：健康、儿童数据、金融等相关业务按市场核验适用资料，区分公司宣传、测试报告、监管授权及适用范围。没有核验不能称已认证、已合规或效果确定。
 
-- Current AI maturity level of the target company vs competitors
-- Perception layer (sensors, computer vision, NLP) capabilities
-- Decision layer (recommendation engines, adaptive algorithms)
-- Execution layer (robotics, automation, autonomous operations)
-- Cross-industry applicability of the company's AI stack
+## 6. 交付与检查
 
-### 8. Final Output
+先给结论，再呈现业务机制、关键证据、专项分析、局限和验证动作。仅保留对问题有用的章节；需要用户后续核验的项目写明下一次验证事件或日期、来源和动作，不凭空指派负责人。
 
-Write the completed report to the user's workspace. Use the filename format `{{BRAND_NAME}}-市场调研报告.md`.
+文件保存位置、命名、版本与变更记录优先遵循项目规则；无既有规范时用 `YYYYMMDD_公司或产品_研究主题_vN.md`。正式资料更新保留可回退版本。来源、关键原始材料和计算过程按项目规则留存；临时抓取和 QA 文件放规定的临时目录，不将可重建缓存当作唯一证据。
+
+交付前检查：是否回答用户的问题；关键结论能否追溯到已读取资料；日期、币种、指标和估算是否一致；引用与文件链接是否有效；是否有未替换占位符、重复内容或无依据的确定性表述。更新任务检查实际差异；结构检查通过不等于来源或业务结论已验证。

@@ -1,4 +1,4 @@
 interface:
-  display_name: "企业调研报告生成器"
-  short_description: "根据公开信息自动搜索并生成结构化企业调研报告，涵盖基本信息、产品、技术、融资、市场、营销、竞争、团队及AI融合分析"
-  default_prompt: "请为 [公司名称] 做一份企业调研报告"
+  display_name: "公司与产品研究"
+  short_description: "基于公开证据解释公司与产品的业务机制，支持快速理解、完整调研、竞品对标和局部更新"
+  default_prompt: "请使用 $company-research-report 调研 [公司、产品或网址]，先解释它解决什么问题、如何运转和收费，再按我的研究目的核验关键证据与限制。"
