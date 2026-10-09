@@ -1,3 +1,5 @@
 README.md
 **/.DS_Store
 **/.last-update-check
+# jd-review 运行数据含真实京东订单号/商品 ID，不入仓库
+.agents/skills/jd-review/state
